@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { 
   Search, 
@@ -58,7 +59,7 @@ export default function CoursesPage() {
 
   // Filter courses
   useEffect(() => {
-    let filtered = courses.filter(course => {
+    const filtered = courses.filter(course => {
       const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            course.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            course.instructor.toLowerCase().includes(searchTerm.toLowerCase());
@@ -249,9 +250,11 @@ export default function CoursesPage() {
             >
               {/* Course Image with Play Button Overlay */}
               <div className="relative h-48 overflow-hidden group cursor-pointer" onClick={() => course.introVideo && setModalCourse(course)}>
-                <img
+                <Image
                   src={course.image || '/api/placeholder/400/250'}
                   alt={course.title}
+                  width={400}
+                  height={250}
                   className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
                 />
                 {course.introVideo && (

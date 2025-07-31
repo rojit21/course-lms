@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { 
   BookOpen, 
@@ -261,7 +262,7 @@ export default function DashboardPage() {
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Course Thumbnail *</label>
                 <input type="file" accept="image/*" onChange={handleImageUpload} className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white" />
-                {courseImage && <img src={courseImage} alt="Course Thumbnail" className="mt-2 w-32 h-20 object-cover rounded" />}
+                {courseImage && <Image src={courseImage} alt="Course Thumbnail" width={128} height={80} className="mt-2 w-32 h-20 object-cover rounded" />}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Intro Video *</label>
@@ -372,9 +373,11 @@ export default function DashboardPage() {
                     {enrollment.course && (
                       <>
                         <div className="relative h-32 mb-4 group cursor-pointer" onClick={() => enrollment.course && enrollment.course.introVideo && setModalCourse(enrollment.course!)}>
-                          <img
+                          <Image
                             src={enrollment.course.image || '/api/placeholder/400/250'}
                             alt={enrollment.course.title}
+                            width={400}
+                            height={250}
                             className="object-cover w-full h-32 rounded"
                           />
                           {enrollment.course.introVideo && (
@@ -403,7 +406,7 @@ export default function DashboardPage() {
                   </div>
                   <div className="flex gap-2 mt-4">
                     {enrollment.course && ((enrollment.course as any)?.creatorId === session.user?.id) && typeof enrollment.course.id === 'string' && (
-                      <button onClick={() => handleRemove(enrollment.course.id)} className="btn-danger flex-1 flex items-center gap-1 justify-center">
+                      <button onClick={() => enrollment.course && handleRemove(enrollment.course.id)} className="btn-danger flex-1 flex items-center gap-1 justify-center">
                         Remove
                       </button>
                     )}

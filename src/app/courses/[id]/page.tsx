@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 
 async function getCourse(id: string) {
   const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
@@ -8,8 +9,9 @@ async function getCourse(id: string) {
   return data.course;
 }
 
-export default async function CourseDetailPage({ params }: { params: { id: string } }) {
-  const course = await getCourse(params.id);
+export default async function CourseDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const course = await getCourse(id);
   if (!course) return notFound();
 
   return (
@@ -20,7 +22,7 @@ export default async function CourseDetailPage({ params }: { params: { id: strin
           <span className="inline-block bg-red-600 text-white px-3 py-1 rounded-full text-sm mr-2">{course.category}</span>
           <span className="inline-block bg-gray-700 text-white px-3 py-1 rounded-full text-sm">{course.difficulty}</span>
         </div>
-        <img src={course.image || '/api/placeholder/400/250'} alt={course.title} className="w-full h-56 object-cover rounded mb-6" />
+        <Image src={course.image || '/api/placeholder/400/250'} alt={course.title} width={400} height={250} className="w-full h-56 object-cover rounded mb-6" />
         <p className="text-gray-300 mb-6">{course.description}</p>
         <div className="mb-4 text-lg text-white font-semibold">Price: ${course.price}</div>
         <div className="mb-4 text-gray-400">Instructor: {course.instructor}</div>

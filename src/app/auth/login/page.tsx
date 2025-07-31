@@ -151,13 +151,13 @@ export default function LoginPage() {
           {/* Divider */}
           <div className="my-6 flex items-center">
             <div className="flex-1 border-t border-gray-700"></div>
-            <span className="px-4 text-gray-400 text-sm">or</span>
+            <span className="px-4 text-gray-j400 text-sm">or</span>
             <div className="flex-1 border-t border-gray-700"></div>
           </div>
 
           {/* Sign up link */}
           <p className="mt-6 text-center text-gray-400">
-            Don't have an account?{' '}
+            Don't have an account?
             <Link href="/auth/register" className="text-red-400 hover:text-red-300 font-medium">
               Sign up
             </Link>

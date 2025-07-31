@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { 
   Plus, 
@@ -120,7 +121,7 @@ export default function CoursesManagementPage() {
 
   // Filter courses
   useEffect(() => {
-    let filtered = courses.filter(course => {
+    const filtered = courses.filter(course => {
       const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            course.description.toLowerCase().includes(searchTerm.toLowerCase());
       
@@ -355,9 +356,11 @@ export default function CoursesManagementPage() {
             >
               {/* Course Image */}
               <div className="relative h-48 overflow-hidden">
-                <img
-                  src={course.image}
+                <Image
+                  src={course.image || '/api/placeholder/400/250'}
                   alt={course.title}
+                  width={400}
+                  height={250}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>

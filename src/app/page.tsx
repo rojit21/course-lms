@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { 
   Play, 
@@ -183,9 +184,11 @@ export default function HomePage() {
                 className="glass rounded-xl overflow-hidden card-hover"
               >
                 <div className="h-48 bg-gradient-to-br from-red-600 to-red-800 relative">
-                    <img
+                    <Image
                       src={course.image || '/api/placeholder/400/250'}
                       alt={course.title}
+                      width={400}
+                      height={250}
                       className="object-cover w-full h-48"
                     />
                   <div className="absolute inset-0 bg-black bg-opacity-20"></div>
@@ -232,9 +235,11 @@ export default function HomePage() {
                 className="glass rounded-xl p-6"
               >
                 <div className="flex items-center mb-4">
-                  <img
+                  <Image
                     src={testimonial.image}
                     alt={testimonial.name}
+                    width={48}
+                    height={48}
                     className="w-12 h-12 object-cover rounded-full mr-4 border-2 border-red-600 shadow"
                   />
                   <div>

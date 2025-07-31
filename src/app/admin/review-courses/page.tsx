@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -68,7 +69,7 @@ export default function ReviewCoursesPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="glass rounded-xl p-6 flex flex-col"
               >
-                <img src={course.image || "/api/placeholder/400/250"} alt={course.title} className="w-full h-32 object-cover rounded mb-4" />
+                <Image src={course.image || "/api/placeholder/400/250"} alt={course.title} width={400} height={250} className="w-full h-32 object-cover rounded mb-4" />
                 <h2 className="text-xl font-semibold mb-2">{course.title}</h2>
                 <p className="text-gray-400 mb-2">{course.description}</p>
                 <div className="mb-2 text-sm text-gray-400">Category: {course.category}</div>

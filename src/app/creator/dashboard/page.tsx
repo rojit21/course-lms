@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { DollarSign, BookOpen, Edit, Trash2, PlusCircle, Clock, X } from "lucide-react";
 import { toast } from "react-hot-toast";
@@ -240,7 +241,7 @@ export default function CreatorDashboard() {
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Course Thumbnail *</label>
                 <input type="file" accept="image/*" onChange={handleImageUpload} className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white" />
-                {courseImage && <img src={courseImage} alt="Course Thumbnail" className="mt-2 w-32 h-20 object-cover rounded" />}
+                {courseImage && <Image src={courseImage} alt="Course Thumbnail" width={128} height={80} className="mt-2 w-32 h-20 object-cover rounded" />}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Intro Video *</label>

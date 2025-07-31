@@ -11,6 +11,7 @@ import {
   Zap,
   Star
 } from 'lucide-react';
+import Image from 'next/image';
 
 export default function AboutPage() {
   const stats = [
@@ -246,9 +247,11 @@ export default function AboutPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="glass rounded-xl p-6 text-center"
               >
-                <img
+                <Image
                   src={member.image}
                   alt={member.name}
+                  width={96}
+                  height={96}
                   className="w-24 h-24 object-cover rounded-full mx-auto mb-4 border-4 border-red-600 shadow-lg"
                 />
                 <h3 className="text-xl font-semibold mb-2">{member.name}</h3>

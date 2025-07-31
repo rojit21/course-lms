@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { 
   Upload, 
@@ -292,9 +293,11 @@ export default function CreateCoursePage() {
                   <div className="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center">
                     {courseImage ? (
                       <div className="relative">
-                        <img
+                        <Image
                           src={courseImage}
                           alt="Course thumbnail"
+                          width={400}
+                          height={250}
                           className="w-full h-48 object-cover rounded-lg"
                         />
                         <button
@@ -436,9 +439,11 @@ export default function CreateCoursePage() {
                   <div className="bg-gray-800 rounded-lg overflow-hidden">
                     <div className="h-32 bg-gradient-to-br from-red-600 to-red-800 relative">
                       {courseImage && (
-                        <img
+                        <Image
                           src={courseImage}
                           alt="Course preview"
+                          width={400}
+                          height={250}
                           className="w-full h-full object-cover"
                         />
                       )}
